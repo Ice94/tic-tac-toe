@@ -1,20 +1,17 @@
 package com.tymek.board;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.IntStream;
 
 /**
  * Created by Mateusz on 29.06.2017.
  */
-public class BoardMap {
+public class Board {
 
     private List<BoardField> board;
     private int boardSize;
 
-    public BoardMap(int boardSize) {
+    public Board(int boardSize) {
         board = new ArrayList<>(boardSize * boardSize);
         this.boardSize = boardSize;
         fillBoard();
@@ -24,6 +21,22 @@ public class BoardMap {
         IntStream.range(0, this.boardSize * this.boardSize)
                 .boxed()
                 .forEach(data -> board.add(new BoardField(data)));
+    }
+
+    public int size() {
+        return board.size();
+    }
+
+    public BoardField get(int position) {
+        return board.get(position);
+    }
+
+    public void draw(String sign, int position) {
+        board.get(position).setSign(sign);
+    }
+
+    public List<BoardField> getBoard() {
+        return Collections.unmodifiableList(board);
     }
 
     @Override
@@ -41,7 +54,6 @@ public class BoardMap {
                 counter = 0;
             }
         }
-
         return stringBuilder.toString();
 
     }
