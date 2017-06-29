@@ -39,6 +39,10 @@ public class Board {
         return Collections.unmodifiableList(board);
     }
 
+    public int getBoardSize() {
+        return boardSize;
+    }
+
     @Override
     public String toString() {
 
@@ -55,6 +59,5 @@ public class Board {
             }
         }
         return stringBuilder.toString();
-
     }
 }
