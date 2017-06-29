@@ -1,12 +1,16 @@
 package com.tymek;
 
 import com.tymek.board.Board;
+import com.tymek.exceptions.AlreadyTakenPositionException;
 import com.tymek.player.Player;
+import com.tymek.player.PlayersScore;
 import com.tymek.utils.WinUtil;
 
 import javax.print.DocFlavor;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Created by Mateusz on 29.06.2017.
@@ -14,7 +18,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        HashMap<String, Player> players = new HashMap<>();
+        Set<Player> players = new TreeSet<>();
 
         Scanner scanner = new Scanner(System.in);
 
@@ -43,8 +47,11 @@ public class Main {
                 .setSign(sign)
                 .build();
 
-        players.put(playerOne.getName(), playerOne);
-        players.put(playerTwo.getName(), playerTwo);
+//        players.put(playerOne.getName(), playerOne);
+//        players.put(playerTwo.getName(), playerTwo);
+        players.add(playerOne);
+        players.add(playerTwo);
+        PlayersScore.Instance.providePlayers(players);
 
         System.out.println("Set size of board");
         int boardSize = Integer.parseInt(scanner.nextLine());
@@ -59,14 +66,31 @@ public class Main {
 
         while(true) {
             System.out.println(String.format("%s make move", currentPlayer.getName()));
-            int position = Integer.parseInt(scanner.nextLine());
-            board.draw(currentPlayer.getSign(), position);
             System.out.println(board);
+
+            int position = -1;
+            try {
+                position = Integer.parseInt(scanner.nextLine());
+                board.draw(currentPlayer.getSign(), position);
+            } catch (AlreadyTakenPositionException e) {
+                System.out.println("You can't overdraw position already taken!");
+                position = Integer.parseInt(scanner.nextLine());
+                board.draw(currentPlayer.getSign(), position);
+            } catch (NumberFormatException e) {
+                System.out.println("Position should be number");
+                position = Integer.parseInt(scanner.nextLine());
+            }
+
 
             //check winner
             if (WinUtil.winnerExists(playerOne, board)) {
+                System.out.println(board);
                 System.out.println(String.format("%s wins", currentPlayer.getName()));
-                break;
+                PlayersScore.Instance.addPoint(currentPlayer);
+                PlayersScore.Instance.printScore();
+                board.clear();
+                //PlayersScore.Instance.showScore(players);
+                System.out.println();
             }
 
             if (currentPlayer.getSign().equals(playerOne.getSign())) {
@@ -74,12 +98,7 @@ public class Main {
             } else {
                 currentPlayer = playerOne;
             }
-
-
-//            System.out.println("Player O make move");
-//            position = Integer.parseInt(scanner.nextLine());
-//            board.draw(CIRCLE, position);
-//            System.out.println(board);
+            System.out.println();
 
         }
 

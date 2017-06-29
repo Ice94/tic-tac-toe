@@ -3,7 +3,7 @@ package com.tymek.player;
 /**
  * Created by Mateusz on 29.06.2017.
  */
-public class Player {
+public class Player implements Comparable<Player> {
     private String name;
     private String sign;
 
@@ -13,6 +13,11 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public int compareTo(Player o) {
+        return this.name.compareTo(o.getName());
     }
 
     public static class PlayerBuilder {
@@ -31,5 +36,23 @@ public class Player {
         public Player build() {
             return player;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Player player = (Player) o;
+
+        if (name != null ? !name.equals(player.name) : player.name != null) return false;
+        return sign != null ? sign.equals(player.sign) : player.sign == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (sign != null ? sign.hashCode() : 0);
+        return result;
     }
 }

@@ -1,5 +1,7 @@
 package com.tymek.board;
 
+import com.tymek.exceptions.AlreadyTakenPositionException;
+
 import java.util.*;
 import java.util.stream.IntStream;
 
@@ -31,8 +33,20 @@ public class Board {
         return board.get(position);
     }
 
-    public void draw(String sign, int position) {
-        board.get(position).setSign(sign);
+    public void draw(String sign, int position) throws AlreadyTakenPositionException {
+        if (board.get(position).isTaken())
+            throw new AlreadyTakenPositionException();
+        try {
+            board.get(position).setSign(sign);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("You can't draw beside board's border!");
+        }
+
+    }
+
+    public void clear() {
+        board = new ArrayList<>(boardSize * boardSize);
+        fillBoard();
     }
 
     public List<BoardField> getBoard() {

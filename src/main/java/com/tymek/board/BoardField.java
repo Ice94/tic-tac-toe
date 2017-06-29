@@ -10,7 +10,8 @@ public class BoardField {
 
     BoardField(int fieldNumber) {
         this.fieldNumber = fieldNumber;
-        sign = String.valueOf(String.format("%02d", fieldNumber)) + " ";
+        sign = String.valueOf(fieldNumber);
+                //String.valueOf(String.format("%02d", fieldNumber)) + " ";
     }
 
     public void setFieldNumber(int fieldNumber) {
@@ -31,6 +32,16 @@ public class BoardField {
 
     @Override
     public String toString() {
+        if (sign.equals(String.valueOf(fieldNumber))) {
+            if (fieldNumber < 10) {
+                return "0" + sign + " ";
+            }
+            else return sign + " ";
+        }
         return sign;
+    }
+
+    public boolean isTaken() {
+        return !sign.equals(String.valueOf(fieldNumber));
     }
 }
