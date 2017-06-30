@@ -14,6 +14,10 @@ public enum PlayersScore {
     private Map<String, Integer> players = new HashMap<>();
     private int gamesCounter;
 
+    public boolean minimumGamesEncountered() {
+        return gamesCounter == 3;
+    }
+
     public void providePlayers(List<Player> players) {
         for (Player player : players) {
             this.players.put(player.getName(), 0);

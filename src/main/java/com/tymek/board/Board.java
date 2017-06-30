@@ -14,15 +14,20 @@ public class Board {
 
     private List<BoardField> board;
     private int boardSize;
+    private int boardWidth;
+    private int boardHeight;
 
-    public Board(int boardSize) {
-        board = new ArrayList<>(boardSize * boardSize);
-        this.boardSize = boardSize;
+    public Board(int boardHeight, int boardWidth) {
+        board = new ArrayList<>(boardHeight * boardWidth);
+        this.boardHeight = boardHeight;
+        this.boardWidth = boardWidth;
+
+        this.boardSize = boardHeight * boardWidth;
         fillBoard();
     }
 
     private void fillBoard() {
-        IntStream.range(0, this.boardSize * this.boardSize)
+        IntStream.range(0, boardSize)
                 .boxed()
                 .forEach(data -> board.add(new BoardField(data)));
     }
@@ -36,21 +41,20 @@ public class Board {
     }
 
     public void draw(String sign, int position) throws BoardException {
-        try {
 
+        try {
             if (board.get(position).isTaken())
                 throw new AlreadyTakenPositionException();
             board.get(position).setSign(sign);
 
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("You can't draw beside board's border!");
             throw new DrawBesideBoardException();
         }
 
     }
 
     public void clear() {
-        board = new ArrayList<>(boardSize * boardSize);
+        board = new ArrayList<>(boardSize);
         fillBoard();
     }
 
@@ -62,6 +66,14 @@ public class Board {
         return boardSize;
     }
 
+    public int getBoardHeight() {
+        return boardHeight;
+    }
+
+    public int getBoardWidth() {
+        return boardWidth;
+    }
+
     @Override
     public String toString() {
 
@@ -71,7 +83,7 @@ public class Board {
             stringBuilder.append(boardField);
             counter++;
 
-            if (counter == boardSize) {
+            if (counter == boardWidth) {
                 //stringBuilder.append(System.getProperty("line.separator"));
                 stringBuilder.append("\n");
                 counter = 0;

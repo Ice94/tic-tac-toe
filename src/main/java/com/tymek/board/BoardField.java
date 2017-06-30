@@ -8,6 +8,7 @@ public class BoardField {
     private String sign;
     private int fieldNumber;
 
+
     BoardField(int fieldNumber) {
         this.fieldNumber = fieldNumber;
         sign = String.valueOf(fieldNumber);
