@@ -2,13 +2,14 @@ package com.tymek;
 
 import com.tymek.board.Board;
 import com.tymek.exceptions.AlreadyTakenPositionException;
-import com.tymek.exceptions.BoardException;
 import com.tymek.exceptions.DrawBesideBoardException;
 import com.tymek.player.Player;
 import com.tymek.player.PlayersScore;
 import com.tymek.utils.WinUtil;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by tymek on 30.06.17.
@@ -19,6 +20,7 @@ public enum Game {
     private List<Player> players = new ArrayList<>();
     private Board board;
     private Player currentPlayer;
+
     private int winningSequenceNumber = 3;
 
     public void start() {
@@ -30,7 +32,6 @@ public enum Game {
         while (true) {
             System.out.println(String.format("%s make move", currentPlayer.getName()));
             System.out.println(board);
-
 
             //
             draw();
@@ -110,8 +111,9 @@ public enum Game {
     private void boardCreation() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Set size of board");
+        System.out.println("Set height of the board");
         int boardHeight = Integer.parseInt(scanner.nextLine());
+        System.out.println("Set width of the board");
         int boardWidth = Integer.parseInt(scanner.nextLine());
 
         this.board = new Board(boardHeight, boardWidth);
