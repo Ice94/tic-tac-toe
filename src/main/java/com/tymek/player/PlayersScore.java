@@ -1,9 +1,7 @@
 package com.tymek.player;
 
-import javafx.scene.effect.SepiaTone;
-
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -14,18 +12,21 @@ public enum PlayersScore {
     Instance;
 
     private Map<String, Integer> players = new HashMap<>();
+    private int gamesCounter;
 
-    public void providePlayers(Set<Player> players) {
+    public void providePlayers(List<Player> players) {
         for (Player player : players) {
             this.players.put(player.getName(), 0);
         }
     }
 
     public void printScore() {
+        System.out.println("Amount of games played: " + gamesCounter);
         System.out.println(players);
     }
 
     public void addPoint(Player currentPlayer) {
+        gamesCounter++;
         int currentScore = players.get(currentPlayer.getName());
         players.replace(currentPlayer.getName(), currentScore + 1);
     }

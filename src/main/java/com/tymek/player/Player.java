@@ -6,6 +6,7 @@ package com.tymek.player;
 public class Player implements Comparable<Player> {
     private String name;
     private String sign;
+    private int positionOrder;
 
     public String getSign() {
         return sign;
@@ -15,13 +16,17 @@ public class Player implements Comparable<Player> {
         return name;
     }
 
-    @Override
-    public int compareTo(Player o) {
-        return this.name.compareTo(o.getName());
+    public int getPosition() {
+        return positionOrder;
     }
 
     public static class PlayerBuilder {
         Player player = new Player();
+
+        public PlayerBuilder positionOrder(int positionOrder) {
+            player.positionOrder = positionOrder;
+            return this;
+        }
 
         public PlayerBuilder name(String name) {
             player.name = name;
@@ -36,6 +41,11 @@ public class Player implements Comparable<Player> {
         public Player build() {
             return player;
         }
+    }
+
+    @Override
+    public int compareTo(Player o) {
+        return this.name.compareTo(o.getName());
     }
 
     @Override
