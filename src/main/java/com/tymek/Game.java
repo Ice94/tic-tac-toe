@@ -9,17 +9,17 @@ import java.util.List;
  * @author Mateusz Bratek
  */
 public interface Game {
+    /**
+     * Creating two players for game.
+     * */
     void createPlayers();
 
-    Players getPlayers();
 
     /**
-     * @see Player
-    * @return List of Players.
-    * */
-    
-    
-
-    
+     * Returning Players.
+     * @see Players
+     * @return players object.
+     * */
+    Players getPlayers();
 
 }
