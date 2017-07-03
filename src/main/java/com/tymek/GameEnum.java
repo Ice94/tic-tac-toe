@@ -1,6 +1,6 @@
 package com.tymek;
 
-import com.tymek.board.Board;
+import com.tymek.board.TwoDimensionalBoard;
 import com.tymek.exceptions.AlreadyTakenPositionException;
 import com.tymek.exceptions.DrawBesideBoardException;
 import com.tymek.player.HumanPlayer;
@@ -18,7 +18,7 @@ public enum GameEnum{
     Instance;
 
     private List<HumanPlayer> humanPlayers = new ArrayList<>();
-    private Board board;
+    private TwoDimensionalBoard twoDimensionalBoard;
     private HumanPlayer currentHumanPlayer;
 
     private int winningSequenceNumber = 3;
@@ -31,21 +31,21 @@ public enum GameEnum{
 
         while (true) {
             System.out.println(String.format("%s make move", currentHumanPlayer.getName()));
-            System.out.println(board);
+            System.out.println(twoDimensionalBoard);
 
             //
             draw();
 
             //check winner only horizontal/vertical O(n)
-            if (WinUtil.winnerExists(currentHumanPlayer, board, winningSequenceNumber)) {
-                System.out.println(board);
+            if (WinUtil.winnerExists(currentHumanPlayer, twoDimensionalBoard, winningSequenceNumber)) {
+                System.out.println(twoDimensionalBoard);
                 System.out.println(String.format("%s wins", currentHumanPlayer.getName()));
 
                 PlayersScore.Instance.addPoint(currentHumanPlayer);
                 PlayersScore.Instance.printScore();
 
                 if (!wantContinue()) break;
-                board.clear();
+                twoDimensionalBoard.clear();
 
             }
 
@@ -65,21 +65,21 @@ public enum GameEnum{
 
         try {
             position = Integer.parseInt(scanner.nextLine());
-            board.draw(currentHumanPlayer.getSign(), position);
+            twoDimensionalBoard.draw(currentHumanPlayer.getSign(), position);
         } catch (AlreadyTakenPositionException e) {
             System.out.println("You can't overdraw position already taken!");
             position = Integer.parseInt(scanner.nextLine());
-            board.draw(currentHumanPlayer.getSign(), position);
+            twoDimensionalBoard.draw(currentHumanPlayer.getSign(), position);
 
         } catch (DrawBesideBoardException e) {
-            System.out.println("You can't draw beside board's border!");
+            System.out.println("You can't draw beside twoDimensionalBoard's border!");
             position = Integer.parseInt(scanner.nextLine());
-            board.draw(currentHumanPlayer.getSign(), position);
+            twoDimensionalBoard.draw(currentHumanPlayer.getSign(), position);
 
         } catch (NumberFormatException e) {
             System.out.println("Position should be number");
             position = Integer.parseInt(scanner.nextLine());
-            board.draw(currentHumanPlayer.getSign(), position);
+            twoDimensionalBoard.draw(currentHumanPlayer.getSign(), position);
         }
     }
 
@@ -111,14 +111,14 @@ public enum GameEnum{
     private void boardCreation() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Set height of the board");
+        System.out.println("Set height of the twoDimensionalBoard");
         int boardHeight = Integer.parseInt(scanner.nextLine());
-        System.out.println("Set width of the board");
+        System.out.println("Set width of the twoDimensionalBoard");
         int boardWidth = Integer.parseInt(scanner.nextLine());
 
-        this.board = new Board(boardHeight, boardWidth);
+        this.twoDimensionalBoard = new TwoDimensionalBoard(boardHeight, boardWidth);
 
-        System.out.println(board);
+        System.out.println(twoDimensionalBoard);
 
         System.out.println();
     }
