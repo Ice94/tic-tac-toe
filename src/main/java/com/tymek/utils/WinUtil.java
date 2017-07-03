@@ -1,19 +1,15 @@
 package com.tymek.utils;
 
 import com.tymek.board.Board;
-import com.tymek.board.BoardField;
-import com.tymek.player.Player;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.tymek.player.HumanPlayer;
 
 /**
  * Created by Mateusz on 29.06.2017.
  */
 public class WinUtil {
-    public static boolean winnerExists(Player player, Board board, int winningSequenceNumber) {
-        //return checkHorizontal(player.getSign(), board) /*|| checkVertical(player.getSign(), board) || checkDiagonal(player.getSign(), board) || checkAntiDiagonal(player.getSign(), board)*/;
-        return checkHorizontal(player.getSign(), board, winningSequenceNumber) || checkVertical(player.getSign(), board, winningSequenceNumber);
+    public static boolean winnerExists(HumanPlayer humanPlayer, Board board, int winningSequenceNumber) {
+        //return checkHorizontal(humanPlayer.getSign(), board) /*|| checkVertical(humanPlayer.getSign(), board) || checkDiagonal(humanPlayer.getSign(), board) || checkAntiDiagonal(humanPlayer.getSign(), board)*/;
+        return checkHorizontal(humanPlayer.getSign(), board, winningSequenceNumber) || checkVertical(humanPlayer.getSign(), board, winningSequenceNumber);
     }
 
     private static boolean checkAntiDiagonal(String playerSign, Board board, int winningSequenceNumber) {

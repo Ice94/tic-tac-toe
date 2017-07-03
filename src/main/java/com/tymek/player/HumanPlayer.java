@@ -1,9 +1,11 @@
 package com.tymek.player;
 
+import com.tymek.Player;
+
 /**
  * Created by Mateusz on 29.06.2017.
  */
-public class Player implements Comparable<Player> {
+public class HumanPlayer implements Comparable<HumanPlayer>, Player {
     private String name;
     private String sign;
     private int positionOrder;
@@ -21,30 +23,30 @@ public class Player implements Comparable<Player> {
     }
 
     public static class PlayerBuilder {
-        Player player = new Player();
+        HumanPlayer humanPlayer = new HumanPlayer();
 
-        public PlayerBuilder positionOrder(int positionOrder) {
-            player.positionOrder = positionOrder;
+        public PlayerBuilder addPositionOrder(int positionOrder) {
+            humanPlayer.positionOrder = positionOrder;
             return this;
         }
 
-        public PlayerBuilder name(String name) {
-            player.name = name;
+        public PlayerBuilder addName(String name) {
+            humanPlayer.name = name;
             return this;
         }
 
-        public PlayerBuilder setSign(String sign) {
-            player.sign = " " + sign.substring(0, 1).toUpperCase() + " ";
+        public PlayerBuilder addSign(String sign) {
+            humanPlayer.sign = " " + sign.substring(0, 1).toUpperCase() + " ";
             return this;
         }
 
-        public Player build() {
-            return player;
+        public HumanPlayer build() {
+            return humanPlayer;
         }
     }
 
     @Override
-    public int compareTo(Player o) {
+    public int compareTo(HumanPlayer o) {
         return this.name.compareTo(o.getName());
     }
 
@@ -53,10 +55,10 @@ public class Player implements Comparable<Player> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Player player = (Player) o;
+        HumanPlayer humanPlayer = (HumanPlayer) o;
 
-        if (name != null ? !name.equals(player.name) : player.name != null) return false;
-        return sign != null ? sign.equals(player.sign) : player.sign == null;
+        if (name != null ? !name.equals(humanPlayer.name) : humanPlayer.name != null) return false;
+        return sign != null ? sign.equals(humanPlayer.sign) : humanPlayer.sign == null;
     }
 
     @Override

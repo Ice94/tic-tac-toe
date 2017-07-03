@@ -3,7 +3,6 @@ package com.tymek.player;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by Mateusz on 30.06.2017.
@@ -18,9 +17,9 @@ public enum PlayersScore {
         return gamesCounter == 3;
     }
 
-    public void providePlayers(List<Player> players) {
-        for (Player player : players) {
-            this.players.put(player.getName(), 0);
+    public void providePlayers(List<HumanPlayer> humanPlayers) {
+        for (HumanPlayer humanPlayer : humanPlayers) {
+            this.players.put(humanPlayer.getName(), 0);
         }
     }
 
@@ -29,10 +28,10 @@ public enum PlayersScore {
         System.out.println(players);
     }
 
-    public void addPoint(Player currentPlayer) {
+    public void addPoint(HumanPlayer currentHumanPlayer) {
         gamesCounter++;
-        int currentScore = players.get(currentPlayer.getName());
-        players.replace(currentPlayer.getName(), currentScore + 1);
+        int currentScore = players.get(currentHumanPlayer.getName());
+        players.replace(currentHumanPlayer.getName(), currentScore + 1);
     }
 }
 

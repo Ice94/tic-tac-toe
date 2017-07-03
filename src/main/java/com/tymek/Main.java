@@ -6,8 +6,9 @@ package com.tymek;
 public class Main {
     public static void main(String[] args) {
 
-        Game.Instance.start();
+        GameEnum.Instance.start();
 
+        Game game = new HumansGame();
 
     }
 }
