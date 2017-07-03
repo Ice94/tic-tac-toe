@@ -9,7 +9,8 @@ public class Main {
 //        GameEnum.Instance.start();
 
         Game game = new HumansGame();
-
+        game.createBoards();
+        System.out.println(game.getBoards().getBoards().get(0).getBoard());
 
     }
 }
