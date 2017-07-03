@@ -1,16 +1,5 @@
 package com.tymek;
 
-import com.tymek.board.TwoDimensionalBoard;
-import com.tymek.exceptions.AlreadyTakenPositionException;
-import com.tymek.exceptions.DrawBesideBoardException;
-import com.tymek.player.HumanPlayer;
-import com.tymek.player.PlayersScore;
-import com.tymek.utils.WinUtil;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 /**
  * Created by tymek on 30.06.17.
  */

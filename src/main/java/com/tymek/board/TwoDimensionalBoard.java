@@ -25,8 +25,19 @@ public class TwoDimensionalBoard implements Board{
         IntStream.range(0, verticalLength * horizontalLength).forEach(i -> board.put(i,"#"));
     }
 
+    @Override
     public Map<Integer, String> getBoard() {
         return board;
+    }
+
+    @Override
+    public int getVerticalLength() {
+        return verticalLength;
+    }
+
+    @Override
+    public int getHorizontalLength() {
+        return horizontalLength;
     }
 
     //    public TwoDimensionalBoard(int boardHeight, int boardWidth) {

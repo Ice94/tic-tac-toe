@@ -8,30 +8,16 @@ import java.util.InputMismatchException;
 /**
  * Created by Mateusz on 29.06.2017.
  */
-public class HumanPlayer implements Comparable<HumanPlayer>, Player {
+public class HumanPlayer implements  Player {
     private String name;
     private String sign;
-    private int positionOrder;
-
-    public String getSign() {
-        return sign;
-    }
 
     public String getName() {
         return name;
     }
 
-    public int getPosition() {
-        return positionOrder;
-    }
-
     public static class PlayerBuilder {
         HumanPlayer humanPlayer = new HumanPlayer();
-
-        public PlayerBuilder addPositionOrder(int positionOrder) {
-            humanPlayer.positionOrder = positionOrder;
-            return this;
-        }
 
         public PlayerBuilder addName(String name) {
             if(!SourceVersion.isName(name)){
@@ -51,26 +37,4 @@ public class HumanPlayer implements Comparable<HumanPlayer>, Player {
         }
     }
 
-    @Override
-    public int compareTo(HumanPlayer o) {
-        return this.name.compareTo(o.getName());
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        HumanPlayer humanPlayer = (HumanPlayer) o;
-
-        if (name != null ? !name.equals(humanPlayer.name) : humanPlayer.name != null) return false;
-        return sign != null ? sign.equals(humanPlayer.sign) : humanPlayer.sign == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (sign != null ? sign.hashCode() : 0);
-        return result;
-    }
 }

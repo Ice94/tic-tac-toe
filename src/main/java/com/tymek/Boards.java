@@ -1,9 +1,9 @@
 package com.tymek;
 
 import com.tymek.board.Board;
-import com.tymek.board.TwoDimensionalBoard;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 
 /**
@@ -22,6 +22,13 @@ public class Boards {
     }
 
     public void add(Board board) {
+        if(!isBoardValid(board)){
+            throw new InputMismatchException();
+        }
         boards.add(board);
+    }
+
+    private boolean isBoardValid(Board board) {
+        return board.getHorizontalLength() > 2 && board.getVerticalLength() > 2;
     }
 }

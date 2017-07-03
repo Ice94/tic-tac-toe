@@ -8,4 +8,6 @@ import java.util.Map;
  */
 public interface Board {
     Map<Integer, String> getBoard();
+    int getHorizontalLength();
+    int getVerticalLength();
 }
