@@ -4,6 +4,8 @@ import com.tymek.player.HumanPlayer;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.util.InputMismatchException;
+
 import static org.testng.Assert.*;
 
 /**
@@ -32,5 +34,20 @@ public class PlayersTest {
         players.add(humanPlayer);
 
         assertTrue(players.getPlayers().contains(humanPlayer));
+    }
+
+    @DataProvider(name = "incorrectNames")
+    public static Object[][] incorrectNames() {
+        return new Object[][]{
+                {"Mateusz 12", ""},
+                {"asdqwe12**", ""}
+        };
+    }
+
+    @Test(dataProvider = "incorrectNames", expectedExceptions = InputMismatchException.class)
+    public void shouldThrowExceptionIfNamesIsNotValid(String name, String string2) {
+        HumanPlayer humanPlayer = new HumanPlayer.PlayerBuilder()
+                .addName(name)
+                .build();
     }
 }

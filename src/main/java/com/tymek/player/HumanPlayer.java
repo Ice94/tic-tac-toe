@@ -2,6 +2,9 @@ package com.tymek.player;
 
 import com.tymek.Player;
 
+import javax.lang.model.SourceVersion;
+import java.util.InputMismatchException;
+
 /**
  * Created by Mateusz on 29.06.2017.
  */
@@ -31,6 +34,9 @@ public class HumanPlayer implements Comparable<HumanPlayer>, Player {
         }
 
         public PlayerBuilder addName(String name) {
+            if(!SourceVersion.isName(name)){
+                throw new InputMismatchException();
+            }
             humanPlayer.name = name;
             return this;
         }
