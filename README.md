@@ -13,10 +13,16 @@ with good test coverage.
  
 
 ## 3. List of test
-0. Test communication.
+0. Test communication. Integration test!
 1. Create board of given size (Square). 
- 
-2. Win Conditions 
+2. Adding points. 
+3. Displaying points.
+4. Test Exception thrown when name is not valid.
+5. Test Exception thrown when board size if smaller than 3.
+6. Test Exception thrown when player choose incorrect value.
+7. Win Conditions 
+8. Test Exception thrown when player choose taken position.
+
 ## 4. Problems
 1. Test validation Input. 
 2. How to test many inputs from one method?
