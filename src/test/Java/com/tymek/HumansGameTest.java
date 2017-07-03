@@ -24,7 +24,11 @@ public class HumansGameTest {
     public void createTwoPlayersWithGivenValues(){
         game.createPlayers();
 
-        assertEquals(game.getPlayers().getPlayers().size(), 2);
+        assertEquals(getNumberOfPlayers(), 2);
+    }
+
+    private int getNumberOfPlayers() {
+        return game.getPlayers().getPlayers().size();
     }
 
 }
