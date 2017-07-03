@@ -13,6 +13,7 @@ import static org.testng.Assert.*;
 @Test
 public class HumansGameTest {
 
+    private static final int NUMBER_OF_PLAYERS = 2;
     private Game game;
 
     @BeforeTest
@@ -24,7 +25,7 @@ public class HumansGameTest {
     public void createTwoPlayersWithGivenValues(){
         game.createPlayers();
 
-        assertEquals(getNumberOfPlayers(), 2);
+        assertEquals(getNumberOfPlayers(), NUMBER_OF_PLAYERS);
     }
 
     private int getNumberOfPlayers() {
