@@ -1,5 +1,6 @@
 package com.tymek.board;
 
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
@@ -9,6 +10,7 @@ import static org.testng.Assert.*;
  */
 @Test
 public class BoardTest {
+
 
 
 }

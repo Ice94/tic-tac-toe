@@ -22,4 +22,15 @@ public interface Game {
      * */
     Players getPlayers();
 
+    /**
+     * Creating three boards.
+     * */
+    void createBoards();
+
+    /**
+     * Returning boards.
+     * @see Boards
+     * @return boards object.
+     * */
+    Boards getBoards();
 }
