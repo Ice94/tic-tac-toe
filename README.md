@@ -22,6 +22,7 @@ with good test coverage.
 6. Test Exception thrown when player choose incorrect value.
 7. Win Conditions 
 8. Test Exception thrown when player choose taken position.
+9. Test if tile is taken.
 
 ## 4. Problems
 1. Test validation Input. 
