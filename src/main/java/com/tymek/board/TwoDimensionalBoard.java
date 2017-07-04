@@ -98,21 +98,5 @@ public class TwoDimensionalBoard implements Board{
 //        return boardWidth;
 //    }
 //
-//    @Override
-//    public String toString() {
-//
-//        StringBuilder stringBuilder = new StringBuilder();
-//        int counter = 0;
-//        for (BoardField boardField : board) {
-//            stringBuilder.append(boardField);
-//            counter++;
-//
-//            if (counter == boardWidth) {
-//                //stringBuilder.append(System.getProperty("line.separator"));
-//                stringBuilder.append("\n");
-//                counter = 0;
-//            }
-//        }
-//        return stringBuilder.toString();
-//    }
+
 }
