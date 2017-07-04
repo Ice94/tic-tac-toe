@@ -22,6 +22,10 @@ public class TwoDimensionalBoard implements Board{
         this.board = new HashMap<>();
         this.verticalLength = verticalLength;
         this.horizontalLength = horizontalLength;
+        fillBoardWithHashes(verticalLength, horizontalLength);
+    }
+
+    public void fillBoardWithHashes(int verticalLength, int horizontalLength) {
         IntStream.range(0, verticalLength * horizontalLength).forEach(i -> board.put(i,"#"));
     }
 

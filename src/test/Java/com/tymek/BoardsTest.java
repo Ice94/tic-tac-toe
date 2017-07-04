@@ -49,7 +49,7 @@ public class BoardsTest {
     @Test(dataProvider = "incorrectSizesOfBoard", expectedExceptions = InputMismatchException.class)
     public void shouldThrownExceptionIfSizesAreNotValid(int horizontalLength, int verticalLength){
         TwoDimensionalBoard board = new TwoDimensionalBoard(horizontalLength, verticalLength);
-
+        board.fillBoardWithHashes(horizontalLength, verticalLength);
         Boards boards = new Boards();
         boards.add(board);
     }

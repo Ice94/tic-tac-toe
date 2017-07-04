@@ -24,4 +24,9 @@ public interface Board {
      * @return vertical length of the board.
      * */
     int getVerticalLength();
+
+    /**
+     * Fills board with # signs.
+     * */
+    void fillBoardWithHashes(int verticalLength, int horizontalLength);
 }
