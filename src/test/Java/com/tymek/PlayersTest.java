@@ -17,14 +17,14 @@ public class PlayersTest {
     @DataProvider(name = "correctNamesAndSigns")
     public static Object[][] correctNamesAndSigns() {
         return new Object[][]{
-                {"Mateusz", "X"},
-                {"Karol", "O"},
-                {"Kamil", "X"}
+                {"Mateusz", GameSign.O_PLAYER},
+                {"Karol", GameSign.X_PLAYER},
+                {"Kamil", GameSign.O_PLAYER}
         };
     }
 
     @Test(dataProvider = "correctNamesAndSigns")
-    public void testCreationOfPlayerWithGivenNameAndSign(String name, String sign) {
+    public void testCreationOfPlayerWithGivenNameAndSign(String name, GameSign sign) {
         HumanPlayer humanPlayer = new HumanPlayer.PlayerBuilder()
                 .addName(name)
                 .addSign(sign)

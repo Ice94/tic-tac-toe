@@ -1,5 +1,6 @@
 package com.tymek.board;
 
+import com.tymek.GameSign;
 import com.tymek.exceptions.AlreadyTakenPositionException;
 import com.tymek.exceptions.BoardException;
 import com.tymek.exceptions.DrawBesideBoardException;
@@ -14,7 +15,7 @@ public class TwoDimensionalBoard implements Board{
 
 
 
-    private Map<Integer, String> board;
+    private Map<Integer, GameSign> board;
     private int verticalLength;
     private int horizontalLength;
 
@@ -26,11 +27,11 @@ public class TwoDimensionalBoard implements Board{
     }
 
     public void fillBoardWithHashes(int verticalLength, int horizontalLength) {
-        IntStream.range(0, verticalLength * horizontalLength).forEach(i -> board.put(i,"#"));
+        IntStream.range(0, verticalLength * horizontalLength).forEach(i -> board.put(i, GameSign.EMPTY_SIGN));
     }
 
     @Override
-    public Map<Integer, String> getBoard() {
+    public Map<Integer, GameSign> getBoard() {
         return board;
     }
 

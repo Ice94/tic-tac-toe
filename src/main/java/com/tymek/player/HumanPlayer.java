@@ -1,5 +1,6 @@
 package com.tymek.player;
 
+import com.tymek.GameSign;
 import com.tymek.Player;
 
 import javax.lang.model.SourceVersion;
@@ -10,7 +11,7 @@ import java.util.InputMismatchException;
  */
 public class HumanPlayer implements  Player {
     private String name;
-    private String sign;
+    private GameSign sign;
 
     public String getName() {
         return name;
@@ -27,8 +28,8 @@ public class HumanPlayer implements  Player {
             return this;
         }
 
-        public PlayerBuilder addSign(String sign) {
-            humanPlayer.sign = " " + sign.substring(0, 1).toUpperCase() + " ";
+        public PlayerBuilder addSign(GameSign sign) {
+            humanPlayer.sign = sign;
             return this;
         }
 
