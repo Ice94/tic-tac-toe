@@ -12,11 +12,6 @@ public class BoardField {
     BoardField(int fieldNumber) {
         this.fieldNumber = fieldNumber;
         sign = String.valueOf(fieldNumber);
-                //String.valueOf(String.format("%02d", fieldNumber)) + " ";
-    }
-
-    public void setFieldNumber(int fieldNumber) {
-        this.fieldNumber = fieldNumber;
     }
 
     public int getFieldNumber() {

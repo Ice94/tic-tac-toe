@@ -1,6 +1,7 @@
 package com.tymek.board;
 
 import com.tymek.exceptions.AlreadyTakenPositionException;
+import com.tymek.exceptions.DrawBesideBoardException;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -39,6 +40,15 @@ public class BoardTest {
         };
     }
 
+    @DataProvider
+    public static Object[][] heightXWidthOutOfBoundPosition(){
+        return new Object[][]{
+                {3,3,10},
+                {3,6,20},
+                {5,5,30}
+        };
+    }
+
     @Test(dataProvider = "heightXWidthEqualsSize")
     public void sizeOfBoardFromParams(int height, int width, int size) {
         // given - when
@@ -70,4 +80,11 @@ public class BoardTest {
         board.get(position).setSign(String.valueOf(position+1));
         board.draw(String.valueOf(position),position);
     }
+
+    @Test(dataProvider = "heightXWidthOutOfBoundPosition", expectedExceptions = DrawBesideBoardException.class)
+    public void shouldThrownExceptionWhenPositionIsOutOfBoard(int height, int width, int position){
+        Board board = new Board(height, width);
+        board.draw(String.valueOf(position), position);
+    }
+
 }
