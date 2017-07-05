@@ -32,7 +32,11 @@ public class GameTest {
     public void createThreeBoard(){
         game.createBoards();
 
-        assertEquals(game.getBoards().getBoards().size(),3);
+        assertEquals(getNumberOfBoards(),3);
+    }
+
+    private int getNumberOfBoards() {
+        return game.getBoards().getBoards().size();
     }
 
     private int getNumberOfPlayers() {
