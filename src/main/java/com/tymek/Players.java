@@ -1,7 +1,9 @@
 package com.tymek;
 
 
+import javax.lang.model.SourceVersion;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 
 /**
@@ -21,6 +23,9 @@ public class Players {
     }
 
     void add(Player player) {
+        if(!SourceVersion.isName(player.getName())){
+            throw new InputMismatchException();
+        }
         players.add(player);
     }
 }

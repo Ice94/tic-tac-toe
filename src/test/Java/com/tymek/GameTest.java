@@ -6,6 +6,8 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.util.Map;
+
 import static org.testng.Assert.assertEquals;
 
 /**
@@ -14,11 +16,23 @@ import static org.testng.Assert.assertEquals;
 public class GameTest {
 
     private static final int NUMBER_OF_PLAYERS = 2;
+    private static final int PLAYER_NUMBER = 0;
+    public static final int NUMBER_OF_BOARDS = 3;
     private Game game;
 
     @BeforeTest
     public void prepare(){
         game = new HumansGame();
+    }
+
+    @DataProvider(name = "playerMoves")
+    public static Object[][] getPlayerMoves(){
+        return new Object[][]{
+                {1,0},
+                {2,1},
+                {3,2},
+                {20,2}
+        };
     }
 
     @Test
@@ -32,8 +46,22 @@ public class GameTest {
     public void createThreeBoard(){
         game.createBoards();
 
-        assertEquals(getNumberOfBoards(),3);
+        assertEquals(getNumberOfBoards(), NUMBER_OF_BOARDS);
     }
+
+    @Test(dataProvider = "playerMoves")
+    public void currentPlayerMove(int position, int round){
+        game.createPlayers();
+        game.createBoards();
+        game.playerMove(getFirstPlayer(), position,round);
+
+        assertEquals(game.getBoardForRound(round).get(position), game.getPlayerNumber(PLAYER_NUMBER).getSign());
+    }
+
+    private Player getFirstPlayer() {
+        return game.getPlayers().getPlayers().get(0);
+    }
+
 
     private int getNumberOfBoards() {
         return game.getBoards().getBoards().size();

@@ -4,6 +4,7 @@ import com.tymek.board.TwoDimensionalBoard;
 import com.tymek.player.HumanPlayer;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by bratek on 03.07.17.
@@ -30,11 +31,26 @@ public class HumansGame implements Game {
     }
 
     @Override
+    public void playerMove(Player player, Integer position, int round) {
+        getBoardForRound(round).put(position, player.getSign());
+    }
+
+    @Override
+    public Map<Integer, GameSign> getBoardForRound(int round) {
+        return boards.getBoards().get(round).getBoard();
+    }
+
+    @Override
+    public Player getPlayerNumber(int playerNumber){
+        return players.getPlayers().get(playerNumber);
+    }
+
+    @Override
     public void createPlayers() {
      // TODO: ask about data.
 
-        HumanPlayer humanPlayer1 = new HumanPlayer();
-        HumanPlayer humanPlayer2 = new HumanPlayer();
+        HumanPlayer humanPlayer1 = new HumanPlayer("Mateusz", GameSign.O_PLAYER);
+        HumanPlayer humanPlayer2 = new HumanPlayer("Kamil", GameSign.X_PLAYER);
 
         players.add(humanPlayer1);
         players.add(humanPlayer2);

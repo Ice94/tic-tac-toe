@@ -13,7 +13,7 @@ public interface Board {
      * Returns board.
      * @return map of integers with strings.
      * */
-    Map<Integer, String> getBoard();
+    Map<Integer, GameSign> getBoard();
 
     /**
      * Returns horizontal length of the board.

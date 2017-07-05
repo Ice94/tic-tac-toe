@@ -25,10 +25,7 @@ public class PlayersTest {
 
     @Test(dataProvider = "correctNamesAndSigns")
     public void testCreationOfPlayerWithGivenNameAndSign(String name, GameSign sign) {
-        HumanPlayer humanPlayer = new HumanPlayer.PlayerBuilder()
-                .addName(name)
-                .addSign(sign)
-                .build();
+        HumanPlayer humanPlayer = new HumanPlayer(name, sign);
 
         Players players = new Players();
         players.add(humanPlayer);
@@ -46,8 +43,8 @@ public class PlayersTest {
 
     @Test(dataProvider = "incorrectNames", expectedExceptions = InputMismatchException.class)
     public void shouldThrowExceptionIfNamesIsNotValid(String name, String string2) {
-        HumanPlayer humanPlayer = new HumanPlayer.PlayerBuilder()
-                .addName(name)
-                .build();
+        Players players = new Players();
+        HumanPlayer humanPlayer = new HumanPlayer(name, GameSign.EMPTY_SIGN);
+        players.add(humanPlayer);
     }
 }

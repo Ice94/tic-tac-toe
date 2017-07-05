@@ -13,29 +13,16 @@ public class HumanPlayer implements  Player {
     private String name;
     private GameSign sign;
 
+    public HumanPlayer(String name, GameSign sign) {
+        this.name = name;
+        this.sign = sign;
+    }
+
     public String getName() {
         return name;
     }
 
-    public static class PlayerBuilder {
-        HumanPlayer humanPlayer = new HumanPlayer();
-
-        public PlayerBuilder addName(String name) {
-            if(!SourceVersion.isName(name)){
-                throw new InputMismatchException();
-            }
-            humanPlayer.name = name;
-            return this;
-        }
-
-        public PlayerBuilder addSign(GameSign sign) {
-            humanPlayer.sign = sign;
-            return this;
-        }
-
-        public HumanPlayer build() {
-            return humanPlayer;
-        }
+    public GameSign getSign() {
+        return sign;
     }
-
 }

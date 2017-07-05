@@ -8,13 +8,8 @@ public enum GameSign {
     O_PLAYER("O"),
     EMPTY_SIGN("#");
 
-    private String sign;
 
-    GameSign(String sign) {
-        this.sign = sign;
-    }
+    GameSign(String s) {
 
-    public String getSign(){
-        return sign;
     }
 }

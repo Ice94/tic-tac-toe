@@ -1,6 +1,7 @@
 package com.tymek;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by bratek on 03.07.17.
@@ -33,4 +34,16 @@ public interface Game {
      * @return boards object.
      * */
     Boards getBoards();
+
+    /**
+     * Set player's game sign at the board.
+     * @param player current player.
+     * @param position which was choosen by player.
+     * @param round number of round.
+     * */
+    void playerMove(Player player, Integer position, int round);
+
+    Map<Integer, GameSign> getBoardForRound(int round);
+
+    Player getPlayerNumber(int playerNumber);
 }

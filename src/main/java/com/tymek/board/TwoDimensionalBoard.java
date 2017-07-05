@@ -11,23 +11,23 @@ public class TwoDimensionalBoard implements Board{
 
 
 
-    private Map<Integer, String> board;
+    private Map<Integer, GameSign> board;
     private int verticalLength;
     private int horizontalLength;
 
     public TwoDimensionalBoard( int verticalLength, int horizontalLength) {
-        this.board = new HashMap<Integer, String>();
+        this.board = new HashMap<>();
         this.verticalLength = verticalLength;
         this.horizontalLength = horizontalLength;
         fillBoardWithHashes(verticalLength, horizontalLength);
     }
 
     public void fillBoardWithHashes(int verticalLength, int horizontalLength) {
-        IntStream.range(1, verticalLength * horizontalLength + 1).forEach(i -> board.put(i, GameSign.EMPTY_SIGN.getSign()));
+        IntStream.range(1, verticalLength * horizontalLength + 1).forEach(i -> board.put(i, GameSign.EMPTY_SIGN));
     }
 
     @Override
-    public Map<Integer, String> getBoard() {
+    public Map<Integer, GameSign> getBoard() {
         return board;
     }
 

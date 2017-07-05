@@ -12,4 +12,10 @@ public interface Player {
      * @return name of the Player.
      * */
     String getName();
+    /**
+     * Method return sign;
+     * @return sign of player.
+     * */
+    GameSign getSign();
+
 }
