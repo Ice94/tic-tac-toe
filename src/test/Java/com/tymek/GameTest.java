@@ -53,14 +53,12 @@ public class GameTest {
     public void currentPlayerMove(int position, int round){
         game.createPlayers();
         game.createBoards();
-        game.playerMove(getFirstPlayer(), position,round);
+        game.playerMove(game.getPlayerNumber(PLAYER_NUMBER), position,round);
 
         assertEquals(game.getBoardForRound(round).get(position), game.getPlayerNumber(PLAYER_NUMBER).getSign());
     }
 
-    private Player getFirstPlayer() {
-        return game.getPlayers().getPlayers().get(0);
-    }
+
 
 
     private int getNumberOfBoards() {
