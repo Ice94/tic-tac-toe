@@ -1,5 +1,6 @@
 package com.tymek.board;
 
+import com.tymek.exceptions.AlreadyTakenPositionException;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -29,6 +30,15 @@ public class BoardTest {
         };
     }
 
+    @DataProvider
+    public static Object[][] heightXWidthTakenPosition() {
+        return new Object[][] {
+            {3,3,6},
+            {4,5,19},
+            {3,7,15}
+        };
+    }
+
     @Test(dataProvider = "heightXWidthEqualsSize")
     public void sizeOfBoardFromParams(int height, int width, int size) {
         // given - when
@@ -40,9 +50,9 @@ public class BoardTest {
 
 
     @Test(dataProvider = "boardFilledWithNumbers")
-    public void newBoardShouldBeFilled(int h, int w) {
+    public void newBoardShouldBeFilled(int height, int width) {
         // given - when
-        Board board = new Board(h, w);
+        Board board = new Board(height, width);
 
         // then
         int i =0;
@@ -50,5 +60,14 @@ public class BoardTest {
             assertEquals(field.getFieldNumber(), i);
             i++;
         }
+    }
+
+    @Test(dataProvider = "heightXWidthTakenPosition", expectedExceptions = AlreadyTakenPositionException.class)
+    public void shouldThrownExceptionWhenCurrentTileIsTaken(int height, int width, int position)
+    {
+        // given
+        Board board = new Board(height, width);
+        board.get(position).setSign(String.valueOf(position+1));
+        board.draw(String.valueOf(position),position);
     }
 }

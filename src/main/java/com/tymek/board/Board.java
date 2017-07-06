@@ -43,7 +43,6 @@ public class Board implements Iterable<BoardField>{
     }
 
     public void draw(String sign, int position) throws BoardException {
-
         try {
             if (board.get(position).isTaken())
                 throw new AlreadyTakenPositionException();

@@ -42,7 +42,7 @@ public class BoardField {
         return sign;
     }
 
-    public boolean isTaken() {
+    boolean isTaken() {
         return !sign.equals(String.valueOf(fieldNumber));
     }
 }
