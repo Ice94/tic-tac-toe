@@ -17,9 +17,9 @@ public class PlayersTest {
     @DataProvider(name = "correctNamesAndSigns")
     public static Object[][] correctNamesAndSigns() {
         return new Object[][]{
-                {"Mateusz", GameSign.O_PLAYER},
-                {"Karol", GameSign.X_PLAYER},
-                {"Kamil", GameSign.O_PLAYER}
+                {"Mateusz", GameSign.O},
+                {"Karol", GameSign.X},
+                {"Kamil", GameSign.O}
         };
     }
 
@@ -44,7 +44,7 @@ public class PlayersTest {
     @Test(dataProvider = "incorrectNames", expectedExceptions = InputMismatchException.class)
     public void shouldThrowExceptionIfNamesIsNotValid(String name, String string2) {
         Players players = new Players();
-        HumanPlayer humanPlayer = new HumanPlayer(name, GameSign.EMPTY_SIGN);
+        HumanPlayer humanPlayer = new HumanPlayer(name, GameSign.E);
         players.add(humanPlayer);
     }
 }

@@ -3,7 +3,6 @@ package com.tymek;
 import com.tymek.board.TwoDimensionalBoard;
 import com.tymek.player.HumanPlayer;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -49,8 +48,8 @@ public class HumansGame implements Game {
     public void createPlayers() {
      // TODO: ask about data.
 
-        HumanPlayer humanPlayer1 = new HumanPlayer("Mateusz", GameSign.O_PLAYER);
-        HumanPlayer humanPlayer2 = new HumanPlayer("Kamil", GameSign.X_PLAYER);
+        HumanPlayer humanPlayer1 = new HumanPlayer("Mateusz", GameSign.O);
+        HumanPlayer humanPlayer2 = new HumanPlayer("Kamil", GameSign.X);
 
         players.add(humanPlayer1);
         players.add(humanPlayer2);

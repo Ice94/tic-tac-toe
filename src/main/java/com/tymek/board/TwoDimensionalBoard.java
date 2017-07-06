@@ -23,7 +23,7 @@ public class TwoDimensionalBoard implements Board{
     }
 
     public void fillBoardWithHashes(int verticalLength, int horizontalLength) {
-        IntStream.range(1, verticalLength * horizontalLength + 1).forEach(i -> board.put(i, GameSign.EMPTY_SIGN));
+        IntStream.range(1, verticalLength * horizontalLength + 1).forEach(i -> board.put(i, GameSign.E));
     }
 
     @Override
