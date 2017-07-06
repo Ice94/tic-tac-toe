@@ -3,6 +3,7 @@ package com.tymek;
 import com.tymek.board.TwoDimensionalBoard;
 import com.tymek.player.HumanPlayer;
 
+import java.util.InputMismatchException;
 import java.util.Map;
 
 /**
@@ -31,7 +32,14 @@ public class HumansGame implements Game {
 
     @Override
     public void playerMove(Player player, Integer position, int round) {
+        if(position > getNumberOfTiles(round) || position < 1){
+            throw new InputMismatchException();
+        }
         getBoardForRound(round).put(position, player.getSign());
+    }
+
+    private int getNumberOfTiles(int round) {
+        return boards.getBoards().get(round).getHorizontalLength() * boards.getBoards().get(round).getVerticalLength() + 1;
     }
 
     @Override

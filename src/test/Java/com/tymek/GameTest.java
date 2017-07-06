@@ -6,6 +6,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.util.InputMismatchException;
 import java.util.Map;
 
 import static org.testng.Assert.assertEquals;
@@ -35,6 +36,16 @@ public class GameTest {
         };
     }
 
+    @DataProvider(name = "incorrectPlayerMoves")
+    public static Object[][] getIncorrectPlayerMoves(){
+        return new Object[][]{
+                {12,0},
+                {-2,1},
+                {100,1},
+                {100,2}
+        };
+    }
+
     @Test
     public void createTwoPlayers(){
         game.createPlayers();
@@ -59,6 +70,12 @@ public class GameTest {
     }
 
 
+    @Test(dataProvider = "incorrectPlayerMoves", expectedExceptions = InputMismatchException.class)
+    public void shouldThrownExceptionWhenPositionIsNotValid(int position, int round){
+        game.createPlayers();
+        game.createBoards();
+        game.playerMove(game.getPlayerNumber(PLAYER_NUMBER), position, round);
+    }
 
 
     private int getNumberOfBoards() {
