@@ -3,14 +3,16 @@ package com.tymek.board;
 import com.tymek.exceptions.AlreadyTakenPositionException;
 import com.tymek.exceptions.BoardException;
 import com.tymek.exceptions.DrawBesideBoardException;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.stream.IntStream;
 
 /**
  * Created by Mateusz on 29.06.2017.
  */
-public class Board {
+public class Board implements Iterable<BoardField>{
 
     private List<BoardField> board;
     private int boardSize;
@@ -58,16 +60,8 @@ public class Board {
         fillBoard();
     }
 
-    public List<BoardField> getBoard() {
-        return Collections.unmodifiableList(board);
-    }
-
     public int getBoardSize() {
         return boardSize;
-    }
-
-    public int getBoardHeight() {
-        return boardHeight;
     }
 
     public int getBoardWidth() {
@@ -84,11 +78,26 @@ public class Board {
             counter++;
 
             if (counter == boardWidth) {
-                //stringBuilder.append(System.getProperty("line.separator"));
                 stringBuilder.append("\n");
                 counter = 0;
             }
         }
         return stringBuilder.toString();
     }
+
+    @Override
+    public Iterator<BoardField> iterator() {
+        return board.iterator();
+    }
+
+    @Override
+    public void forEach(Consumer<? super BoardField> action) {
+        board.forEach(action);
+    }
+
+    @Override
+    public Spliterator<BoardField> spliterator() {
+        return board.spliterator();
+    }
+
 }
