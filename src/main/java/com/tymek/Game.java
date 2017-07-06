@@ -43,7 +43,13 @@ public interface Game {
      * */
     void playerMove(Player player, Integer position, int round);
 
+    /**
+     * @return board for requested round.
+     * */
     Map<Integer, GameSign> getBoardForRound(int round);
 
+    /**
+     * @return player with requested number.
+     * */
     Player getPlayerNumber(int playerNumber);
 }
