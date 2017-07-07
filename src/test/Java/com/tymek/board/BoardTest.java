@@ -58,6 +58,15 @@ public class BoardTest {
         };
     }
 
+    @DataProvider
+    public static Object[][] heightXWidthOutput() {
+        return new Object[][] {
+            {3,3,"00 01 02 \n03 04 05 \n06 07 08 \n"},
+            {4,5,"00 01 02 03 04 \n05 06 07 08 09 \n10 11 12 13 14 \n15 16 17 18 19 \n"},
+            {3,5,"00 01 02 03 04 \n05 06 07 08 09 \n10 11 12 13 14 \n"}
+        };
+    }
+
     @Test(dataProvider = "heightXWidthEqualsSize")
     public void sizeOfBoardFromParams(int height, int width, int size) {
         // given - when
@@ -110,6 +119,17 @@ public class BoardTest {
             assertEquals(field.getFieldNumber(), i);
             i++;
         }
+    }
+
+    @Test(dataProvider = "heightXWidthOutput")
+    public void shouldDrawBoardInCorrectFormat(int height, int width, String output)
+    {
+        // given
+        Board board = new Board(height, width);
+        // when
+
+        // then
+        assertEquals(board.toString(), output);
     }
 
 }

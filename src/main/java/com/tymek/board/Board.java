@@ -76,12 +76,16 @@ public class Board implements Iterable<BoardField>{
             stringBuilder.append(boardField);
             counter++;
 
-            if (counter == boardWidth) {
+            if (endOfLine(counter)) {
                 stringBuilder.append("\n");
                 counter = 0;
             }
         }
         return stringBuilder.toString();
+    }
+
+    private boolean endOfLine(int counter) {
+        return counter == boardWidth;
     }
 
     @Override
