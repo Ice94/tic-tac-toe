@@ -49,6 +49,15 @@ public class BoardTest {
         };
     }
 
+    @DataProvider
+    public static Object[][] heightXWidthRandomPosition() {
+        return new Object[][] {
+            {3,3,5},
+            {4,4,10},
+            {6,8,20}
+        };
+    }
+
     @Test(dataProvider = "heightXWidthEqualsSize")
     public void sizeOfBoardFromParams(int height, int width, int size) {
         // given - when
@@ -85,6 +94,22 @@ public class BoardTest {
     public void shouldThrownExceptionWhenPositionIsOutOfBoard(int height, int width, int position){
         Board board = new Board(height, width);
         board.draw(String.valueOf(position), position);
+    }
+
+    @Test(dataProvider = "heightXWidthRandomPosition")
+    public void shouldClearBoard(int height, int width, int position)
+    {
+        // given
+        Board board = new Board(height, width);
+        board.get(position).setSign(String.valueOf(position + 1));
+        // when
+        board.clear();
+        // then
+        int i =0;
+        for (BoardField field : board) {
+            assertEquals(field.getFieldNumber(), i);
+            i++;
+        }
     }
 
 }

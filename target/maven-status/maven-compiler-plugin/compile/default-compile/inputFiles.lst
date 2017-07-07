@@ -1,0 +1,10 @@
+/home/bratek/IdeaProjects/tic-tac-toe/src/main/java/com/tymek/Game.java
+/home/bratek/IdeaProjects/tic-tac-toe/src/main/java/com/tymek/utils/WinUtil.java
+/home/bratek/IdeaProjects/tic-tac-toe/src/main/java/com/tymek/player/PlayersScore.java
+/home/bratek/IdeaProjects/tic-tac-toe/src/main/java/com/tymek/Main.java
+/home/bratek/IdeaProjects/tic-tac-toe/src/main/java/com/tymek/board/Board.java
+/home/bratek/IdeaProjects/tic-tac-toe/src/main/java/com/tymek/exceptions/DrawBesideBoardException.java
+/home/bratek/IdeaProjects/tic-tac-toe/src/main/java/com/tymek/player/Player.java
+/home/bratek/IdeaProjects/tic-tac-toe/src/main/java/com/tymek/exceptions/BoardException.java
+/home/bratek/IdeaProjects/tic-tac-toe/src/main/java/com/tymek/board/BoardField.java
+/home/bratek/IdeaProjects/tic-tac-toe/src/main/java/com/tymek/exceptions/AlreadyTakenPositionException.java
