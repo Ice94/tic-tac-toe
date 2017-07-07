@@ -29,12 +29,16 @@ public class BoardField {
     @Override
     public String toString() {
         if (sign.equals(String.valueOf(fieldNumber))) {
-            if (fieldNumber < 10) {
+            if (fieldNumberLessThanTen()) {
                 return "0" + sign + " ";
             }
             else return sign + " ";
         }
         return sign;
+    }
+
+    private boolean fieldNumberLessThanTen() {
+        return fieldNumber < 10;
     }
 
     boolean isTaken() {
