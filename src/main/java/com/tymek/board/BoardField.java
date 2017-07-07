@@ -28,11 +28,13 @@ public class BoardField {
 
     @Override
     public String toString() {
-        if (sign.equals(String.valueOf(fieldNumber))) {
+        if (!isTaken()) {
             if (fieldNumberLessThanTen()) {
                 return "0" + sign + " ";
             }
-            else return sign + " ";
+            else{
+                return sign + " ";
+            }
         }
         return sign;
     }
