@@ -12,6 +12,7 @@ import java.util.stream.IntStream;
 /**
  * Created by Mateusz on 29.06.2017.
  */
+
 public class Board implements Iterable<BoardField>{
 
     private List<BoardField> board;
