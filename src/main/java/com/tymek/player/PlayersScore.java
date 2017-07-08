@@ -11,7 +11,7 @@ import java.util.Set;
 public enum PlayersScore {
     Instance;
 
-    private Map<String, Integer> players = new HashMap<>();
+    public Map<String, Integer> players = new HashMap<>();
     private int gamesCounter;
 
     public boolean minimumGamesEncountered() {
