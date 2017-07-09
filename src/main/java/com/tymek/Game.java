@@ -89,8 +89,8 @@ public enum Game {
         playerCreation(players);
         PlayersScore.Instance.providePlayers(players);
 
+        messenger.printMessage("Number of characters needed to win?");
         Scanner scanner = new Scanner(System.in);
-
         winningSequenceNumber = Integer.parseInt(scanner.nextLine());
 
         boardCreation();
