@@ -43,7 +43,7 @@
     3. Hard to estimate something, although spend some time making estimation.
     
     
-    ### 6. Improvemnts
+    ### 6. My skills improvemnts
     1. Testing - knowledge about testing streams, exceptions.
     2. IDE - creating live tempalates, debuging and rerunning one testcase when using ``@DataProvider``.
     3. Designing - CRC diagrams, my point of view about design change (for ex. When I am designing, I trying to think 
