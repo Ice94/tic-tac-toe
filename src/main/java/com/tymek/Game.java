@@ -20,6 +20,8 @@ public enum Game {
     private List<Player> players = new ArrayList<>();
     private Board board;
     private Player currentPlayer;
+    private Messenger messenger = new UIMessenger(System.out);
+
 
     private int winningSequenceNumber = 3;
 
@@ -30,16 +32,12 @@ public enum Game {
         currentPlayer = players.get(0);
 
         while (true) {
-            System.out.println(String.format("%s make move", currentPlayer.getName()));
-            System.out.println(board);
+            messenger.printMessage(String.format("%s make move", currentPlayer.getName()));
+            messenger.printMessage(board.toString());
 
-            //
-
-
-            //check winner only horizontal/vertical O(n)
             if (WinUtil.winnerExists(currentPlayer, board, winningSequenceNumber, draw())) {
-                System.out.println(board);
-                System.out.println(String.format("%s wins", currentPlayer.getName()));
+                messenger.printMessage(board.toString());
+                messenger.printMessage(String.format("%s wins", currentPlayer.getName()));
 
                 PlayersScore.Instance.addPoint(currentPlayer);
                 PlayersScore.Instance.printScore();
@@ -69,17 +67,17 @@ public enum Game {
             board.draw(currentPlayer.getSign(), position);
 
         } catch (AlreadyTakenPositionException e) {
-            System.out.println("You can't overdraw position already taken!");
+            messenger.printMessage("You can't overdraw position already taken!");
             position = Integer.parseInt(scanner.nextLine());
             board.draw(currentPlayer.getSign(), position);
 
         } catch (DrawBesideBoardException e) {
-            System.out.println("You can't draw beside board's border!");
+            messenger.printMessage("You can't draw beside board's border!");
             position = Integer.parseInt(scanner.nextLine());
             board.draw(currentPlayer.getSign(), position);
 
         } catch (NumberFormatException e) {
-            System.out.println("Position should be number");
+            messenger.printMessage("Position should be number");
             position = Integer.parseInt(scanner.nextLine());
             board.draw(currentPlayer.getSign(), position);
         }
@@ -91,15 +89,19 @@ public enum Game {
         playerCreation(players);
         PlayersScore.Instance.providePlayers(players);
 
+        Scanner scanner = new Scanner(System.in);
+
+        winningSequenceNumber = Integer.parseInt(scanner.nextLine());
+
         boardCreation();
     }
 
     private void playerCreation(List<Player> players) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println(String.format("Player %d set your name: ", players.size() + 1));
+        messenger.printMessage(String.format("Player %d set your name: ", players.size() + 1));
         String name = scanner.nextLine();
-        System.out.println(String.format("Player %d set your sign: ", players.size() + 1));
+        messenger.printMessage(String.format("Player %d set your sign: ", players.size() + 1));
         String sign = scanner.nextLine();
 
         Player player = new Player.PlayerBuilder()
@@ -114,9 +116,9 @@ public enum Game {
     private void boardCreation() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Set height of the board");
+        messenger.printMessage("Set height of the board");
         int boardHeight = Integer.parseInt(scanner.nextLine());
-        System.out.println("Set width of the board");
+        messenger.printMessage("Set width of the board");
         int boardWidth = Integer.parseInt(scanner.nextLine());
 
         this.board = new Board(boardHeight, boardWidth);
@@ -129,7 +131,7 @@ public enum Game {
     private boolean wantContinue() {
 
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Continue? y/n");
+           messenger.printMessage("Continue? y/n");
 
             switch (scanner.nextLine()) {
                 case ("y"):
@@ -137,7 +139,7 @@ public enum Game {
                 case ("n"):
                     return false;
                 default:
-                    System.out.println("Nya-a. Only y/n");
+                    messenger.printMessage("Nya-a. Only y/n");
                     wantContinue();
 
         }
