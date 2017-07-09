@@ -48,9 +48,9 @@ public class BoardFieldTest {
     }
 
     @Test(dataProvider = "sizesOfBoards")
-    public void shouldReturnPositionAndSpaceIfGivenValueIsGreaterThanNine(int verical, int horzontal)
+    public void shouldReturnPositionAndSpaceIfGivenValueIsGreaterThanNine(int vertical, int horizontal)
     {
-        Board board = new Board(verical, horzontal);
+        Board board = new Board(vertical, horizontal);
         // given
 
         // when
