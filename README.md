@@ -10,7 +10,6 @@
     ### 1.3 How to run
     ``mvn exec:java -Dexec.mainClass="com.tymek.Main"``
     ## 2. Features
-     
     
     ## 3. List of test
     0. Test communication.
@@ -47,7 +46,9 @@
     ### 6. Improvemnts
     1. Testing - knowledge about testing streams, exceptions.
     2. IDE - creating live tempalates, debuging and rerunning one testcase when using ``@DataProvider``.
-    
+    3. Designing - CRC diagrams, my point of view about design change (for ex. When I am designing, I trying to think 
+    about the tests.
+    4. Git - branches.
     
     ### 7. Need help
     1. How to test ``Game`` enum. (I think it is impossilbe, only refactor can help, but ask about the advice).
