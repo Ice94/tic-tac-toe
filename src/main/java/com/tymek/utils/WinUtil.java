@@ -13,8 +13,7 @@ import java.util.List;
 public class WinUtil {
     public static boolean winnerExists(Player player, Board board, int winningSequenceNumber) {
         //return checkHorizontal(player.getSign(), board) /*|| checkVertical(player.getSign(), board) || checkDiagonal(player.getSign(), board) || checkAntiDiagonal(player.getSign(), board)*/;
-        return checkHorizontal(player.getSign(), board, winningSequenceNumber);
-//                || checkVertical(player.getSign(), board, winningSequenceNumber);
+        return checkHorizontal(player.getSign(), board, winningSequenceNumber) || checkVertical(player.getSign(), board, winningSequenceNumber);
     }
 
     private static boolean checkAntiDiagonal(String playerSign, Board board, int winningSequenceNumber) {
