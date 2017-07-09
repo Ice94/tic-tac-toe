@@ -15,22 +15,31 @@ public class WinUtil {
         //return checkHorizontal(player.getSign(), board) /*|| checkVertical(player.getSign(), board) || checkDiagonal(player.getSign(), board) || checkAntiDiagonal(player.getSign(), board)*/;
         return checkHorizontal(player.getSign(), board, winningSequenceNumber)
                 || checkVertical(player.getSign(), board, winningSequenceNumber)
-                || checkDiagonal(player.getSign(), board, winningSequenceNumber, position);
+                || checkDiagonal(player.getSign(), board, winningSequenceNumber, position)
+                || checkAntiDiagonal(player.getSign(), board, winningSequenceNumber, position);
     }
 
-//    private static boolean checkAntiDiagonal(String playerSign, Board board, int winningSequenceNumber) {
-//        int tmp = 0;
-//        for (int i = board.getBoardSize(); i < board.size(); i += board.getBoardSize() - 1) {
-//            if (i == board.getBoardSize()) tmp = 0;
-//            if (board.get(i).getSign().equals(playerSign)) tmp++;
-//            if (tmp == board.getBoardSize()) {
-//
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//
+    private static boolean checkAntiDiagonal(String playerSign, Board board, int winningSequenceNumber, int positon) {
+        int tmp = 0;
+        for (int i = positon; i < board.size(); i = i + board.getBoardWidth() - 1) {
+            if (board.get(i).getSign().equals(playerSign)){
+                tmp++;
+            }
+            if(winningSequenceNumber == tmp){
+                return true;
+            }
+        }
+        for (int i = positon - board.getBoardWidth() + 1; i > 0; i = i - (board.getBoardWidth() - 1)) {
+            if (board.get(i).getSign().equals(playerSign)){
+                tmp++;
+            }
+            if(winningSequenceNumber == tmp){
+                return true;
+            }
+        }
+        return false;
+    }
+
     private static boolean checkDiagonal(String playerSign, Board board, int winningSequenceNumber, int position) {
         int tmp = 0;
         for (int i = position; i <= board.size(); i = i + board.getBoardWidth() + 1) {

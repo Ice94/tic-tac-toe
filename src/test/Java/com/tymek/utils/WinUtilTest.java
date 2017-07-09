@@ -107,4 +107,32 @@ public class WinUtilTest {
 
         assertTrue(WinUtil.winnerExists(player, board, winningSequenceNumber, position));
     }
+
+
+    @DataProvider
+    public static Object[][] widthXheightXSignWinningNumberPosition(){
+        return new Object[][]{
+                {5,5,"X",5,4},
+                {5,5,"X",5,8},
+                {5,5,"X",4,16}
+        };
+    }
+
+    @Test(dataProvider = "widthXheightXSignWinningNumberPosition")
+    public void shouldReturnTrueIfWinnerIsOnAntiDiagonal(int width,
+                                                         int height,
+                                                         String sign,
+                                                         int winningSequenceNumber,
+                                                         int position){
+        Board board = new Board(height, width);
+        Player player = new Player.PlayerBuilder()
+                .setSign(sign)
+                .build();
+
+        for(int i = width * height - width; i > 0; i = i - (width - 1)){
+            board.get(i).setSign(player.getSign());
+        }
+
+        assertTrue(WinUtil.winnerExists(player, board, winningSequenceNumber, position));
+    }
 }
