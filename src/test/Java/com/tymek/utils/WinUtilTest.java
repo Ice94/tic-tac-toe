@@ -38,7 +38,7 @@ public class WinUtilTest {
             board.get(i).setSign(player.getSign());
         }
 
-        assertTrue(WinUtil.winnerExists(player, board, winningSequenceNumber));
+        assertTrue(WinUtil.winnerExists(player, board, winningSequenceNumber, 0));
     }
 
     @Test(dataProvider = "verticalXHorizontalXSingXNeedToWin")
@@ -53,6 +53,58 @@ public class WinUtilTest {
             board.get(i).setSign(player.getSign());
         }
 
-        assertTrue(WinUtil.winnerExists(player, board, winningSequenceNumber));
+        assertTrue(WinUtil.winnerExists(player, board, winningSequenceNumber, 0));
+    }
+
+    @DataProvider
+    public static Object[][] verticalXHorizontalXSingXPositionXNeedToWin(){
+        return new Object[][]{
+                {3,3,"X",3,0},
+                {4,4,"X",3,1},
+                {30,30,"X",10,4},
+                {4,4,"X",3,1},
+                {5,5,"X",3,2}
+        } ;
+    }
+
+    @Test(dataProvider = "verticalXHorizontalXSingXPositionXNeedToWin")
+    public void shouldReturnTrueIfWinnerIsOnDiagonalLineFromFirstLine(int width,
+                                                                      int height,
+                                                                      String sign,
+                                                                      int winningSequenceNumber,
+                                                                      int position){
+        Board board = new Board(height, width);
+        Player player = new Player.PlayerBuilder()
+                .setSign(sign)
+                .build();
+
+        for(int i = position; i < height * width; i = i + width + 1){
+            board.get(i).setSign(player.getSign());
+        }
+        assertTrue(WinUtil.winnerExists(player, board, winningSequenceNumber, position));
+    }
+
+    @DataProvider
+    public static Object[][] verticalXHorizontalXSignXPosition(){
+        return new Object[][]{
+                {3,3,"X",3,4}
+        };
+    }
+
+    @Test(dataProvider = "verticalXHorizontalXSignXPosition")
+    public void shouldReturnTrueIfWinnerIsOnDiagonal(int width,
+                                                     int height,
+                                                     String sign,
+                                                     int winningSequenceNumber,
+                                                     int position){
+        Board board = new Board(height, width);
+        Player player = new Player.PlayerBuilder()
+                .setSign(sign)
+                .build();
+        board.get(0).setSign(player.getSign());
+        board.get(4).setSign(player.getSign());
+        board.get(8).setSign(player.getSign());
+
+        assertTrue(WinUtil.winnerExists(player, board, winningSequenceNumber, position));
     }
 }

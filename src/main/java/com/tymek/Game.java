@@ -34,20 +34,21 @@ public enum Game {
             System.out.println(board);
 
             //
-            draw();
+
 
             //check winner only horizontal/vertical O(n)
-            if (WinUtil.winnerExists(currentPlayer, board, winningSequenceNumber)) {
+            if (WinUtil.winnerExists(currentPlayer, board, winningSequenceNumber, draw())) {
                 System.out.println(board);
                 System.out.println(String.format("%s wins", currentPlayer.getName()));
 
                 PlayersScore.Instance.addPoint(currentPlayer);
                 PlayersScore.Instance.printScore();
 
-                if (!wantContinue()) break;
-                board.clear();
 
+            board.clear();
             }
+
+            if (!wantContinue()) break;
 
             currentPlayer = players.stream()
                     .filter(data -> currentPlayer.getPosition() != data.getPosition())
@@ -59,13 +60,14 @@ public enum Game {
         }
     }
 
-    private void draw() {
+    private int draw() {
         int position;
         Scanner scanner = new Scanner(System.in);
 
         try {
             position = Integer.parseInt(scanner.nextLine());
             board.draw(currentPlayer.getSign(), position);
+
         } catch (AlreadyTakenPositionException e) {
             System.out.println("You can't overdraw position already taken!");
             position = Integer.parseInt(scanner.nextLine());
@@ -81,6 +83,7 @@ public enum Game {
             position = Integer.parseInt(scanner.nextLine());
             board.draw(currentPlayer.getSign(), position);
         }
+        return position;
     }
 
     private void setup() {
@@ -124,7 +127,7 @@ public enum Game {
     }
 
     private boolean wantContinue() {
-        if (PlayersScore.Instance.minimumGamesEncountered()) {
+
             Scanner scanner = new Scanner(System.in);
             System.out.println("Continue? y/n");
 
@@ -136,7 +139,7 @@ public enum Game {
                 default:
                     System.out.println("Nya-a. Only y/n");
                     wantContinue();
-            }
+
         }
         return true;
     }
