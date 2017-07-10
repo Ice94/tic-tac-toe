@@ -18,9 +18,9 @@ import java.util.Scanner;
 public enum Game {
     Instance;
 
-    private List<Player> players = new ArrayList<>();
+    List<Player> players = new ArrayList<>();
     Board board;
-    private Player currentPlayer;
+    Player currentPlayer;
     private Messenger messenger = new UIMessenger(System.out);
 
 
@@ -53,17 +53,21 @@ public enum Game {
 
             if (!wantContinue()) break;
 
-            currentPlayer = players.stream()
-                    .filter(data -> currentPlayer.getPosition() != data.getPosition())
-                    .findAny()
-                    .get();
+            currentPlayer = swapPlayer();
 
             System.out.println();
 
         }
     }
 
-    private boolean boardFull(Board board) {
+    Player swapPlayer() {
+        return players.stream()
+                .filter(data -> currentPlayer.getPosition() != data.getPosition())
+                .findAny()
+                .get();
+    }
+
+    boolean boardFull(Board board) {
         int i = 0;
         for(BoardField field : board){
             if(field.getSign().equals(Integer.toString(i))){
@@ -146,7 +150,7 @@ public enum Game {
     private boolean wantContinue() {
 
             Scanner scanner = new Scanner(System.in);
-           messenger.printMessage("Continue? y/n");
+            messenger.printMessage("Continue? y/n");
 
             switch (scanner.nextLine()) {
                 case ("y"):
