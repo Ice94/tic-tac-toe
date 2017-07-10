@@ -31,11 +31,10 @@
  
     ### 4. TO DO 
     1. Ask who start.
-    2. Add draw posibility. 
-    3. Add 3 point when win. One when draw.
-    4. Languages.
-    5. Server.
-    6. Test coverage (Class = 83%, Method = 70%, Line = 57%)
+    2. Add 3 point when win. One when draw. DONE
+    3. Languages.
+    4. Server.
+    5. Test coverage (Class = 83%, Method = 70%, Line = 57%)
     
     ### 5. Mistakes
     1. Overtrust to my skills (Overdesing).

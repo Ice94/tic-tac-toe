@@ -45,16 +45,16 @@ public class PlayersScoreTest {
     }
 
     @DataProvider
-    public static Object[][] namesAndPoints(){
+    public static Object[][] namesAndPointsWhenWin(){
         return new Object[][]{
-                {"Mateusz",1},
-                {"Kasujsz",1},
-                {"Timon",1}
+                {"Mateusz",3},
+                {"Kasujsz",3},
+                {"Timon",3}
         };
     }
 
-    @Test(dataProvider = "namesAndPoints")
-    public void shouldAddPoint(String name, int points){
+    @Test(dataProvider = "namesAndPointsWhenWin")
+    public void shouldAddPointWhenWin(String name, int points){
         Player player = new Player.PlayerBuilder()
                 .name(name)
                 .build();
@@ -63,9 +63,36 @@ public class PlayersScoreTest {
         players.add(player);
 
         PlayersScore.Instance.providePlayers(players);
-        PlayersScore.Instance.addPoint(player);
+        PlayersScore.Instance.addPointWhenWin(player);
 
         assertEquals(Optional.ofNullable(PlayersScore.Instance.players.get(player.getName())),
                 Optional.ofNullable(points));
+    }
+
+    @DataProvider
+    public static Object[][] namesAndPointsWhenDraw() {
+        return new Object[][] {
+            {"Mat", 1},
+            {"Kat:",1},
+            {"Rak",1}
+        };
+    }
+
+    @Test(dataProvider = "namesAndPointsWhenDraw")
+    public void shouldAddOnePointWhenDraw(String name, int point)
+    {
+        // given
+        Player player = new Player.PlayerBuilder()
+                .name(name)
+                .build();
+        // when
+        List<Player> players = new ArrayList<>();
+        players.add(player);
+
+        PlayersScore.Instance.providePlayers(players);
+        PlayersScore.Instance.addPointWhenDraw(player);
+        // then
+        assertEquals(Optional.ofNullable(PlayersScore.Instance.players.get(player.getName())),
+                Optional.ofNullable(point));
     }
 }

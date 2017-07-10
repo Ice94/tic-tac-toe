@@ -29,10 +29,16 @@ public enum PlayersScore {
         System.out.println(players);
     }
 
-    public void addPoint(Player currentPlayer) {
+    public void addPointWhenWin(Player currentPlayer) {
         gamesCounter++;
         int currentScore = players.get(currentPlayer.getName());
-        players.replace(currentPlayer.getName(), currentScore + 1);
+        players.replace(currentPlayer.getName(), currentScore + 3);
+    }
+
+    public void addPointWhenDraw(Player player) {
+        gamesCounter++;
+        int currentScore = players.get(player.getName());
+        players.replace(player.getName(), currentScore + 1);
     }
 }
 

@@ -1,6 +1,7 @@
 package com.tymek;
 
 import com.tymek.board.Board;
+import com.tymek.board.BoardField;
 import com.tymek.exceptions.AlreadyTakenPositionException;
 import com.tymek.exceptions.DrawBesideBoardException;
 import com.tymek.player.Player;
@@ -18,7 +19,7 @@ public enum Game {
     Instance;
 
     private List<Player> players = new ArrayList<>();
-    private Board board;
+    Board board;
     private Player currentPlayer;
     private Messenger messenger = new UIMessenger(System.out);
 
@@ -39,11 +40,15 @@ public enum Game {
                 messenger.printMessage(board.toString());
                 messenger.printMessage(String.format("%s wins", currentPlayer.getName()));
 
-                PlayersScore.Instance.addPoint(currentPlayer);
+                PlayersScore.Instance.addPointWhenWin(currentPlayer);
                 PlayersScore.Instance.printScore();
 
 
             board.clear();
+            }
+
+            if(boardFull(board)){
+                PlayersScore.Instance.addPointWhenDraw(currentPlayer);
             }
 
             if (!wantContinue()) break;
@@ -58,7 +63,17 @@ public enum Game {
         }
     }
 
-    private int draw() {
+    private boolean boardFull(Board board) {
+        int i = 0;
+        for(BoardField field : board){
+            if(field.getSign().equals(Integer.toString(i))){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    int draw() {
         int position;
         Scanner scanner = new Scanner(System.in);
 
